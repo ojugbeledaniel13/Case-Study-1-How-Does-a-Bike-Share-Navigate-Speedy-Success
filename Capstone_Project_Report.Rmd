@@ -1,0 +1,420 @@
+---
+  title: "Case Study: How Does a Bike-Share Navigate Speedy Success"
+output:
+  html_document:
+  toc: true
+toc_depth: 4
+theme: cosmo
+highlight: monochrome
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: Ojugbele Daniel Babatunde
+---
+  
+  ![](Visualizations/GCC_badge_DA_1000x1000.png){width="350"}
+
+## 1. **Introduction** {#sec-1.-introduction}
+
+The bike share company, **Cyclistic**, is based in Chicago and offers services to its users. In order to **improve its marketing strategy** and drive future growth, the company is **interested in understanding the behavior of its users while using the services**. As a part of the Google Data Analytics certification course, I was given the opportunity to conduct a case study on Cyclistic to analyze the data and provide insights on the users' behavior. In this project, I will follow the steps of the data analysis process: **ask, prepare, process, analyze, and share**. **The aim of this case study is to provide actionable insights for the company to consider in their marketing strategy.**
+
+<br>
+
+## 2. **Scenario** {#sec-2.-scenario}
+
+Cyclistic operates a fleet of more than 5,800 bicycles which can be accessed from over 600 docking stations across the city. Bikes can be borrowed from one docking station, ridden, then returned to any docking stations. Over the years marketing campaigns have been broad and targeted a cross-section of potential users. Data analysis has shown that riders with an annual membership are more profitable than casual riders. Lily Moreno, the director of marketing, wants to implement a new marketing strategy in order to convert casual riders into annual members. She believes that with the right campaign there is a very good chance of such conversions between the user types. There are also user-friendly bike options include such as electric bikes, classic bikes and docked bikes. It makes Cyclistic services more inclusive to people. Lily has tasked the marketing analytics team to analyze past user data of one year to find trends and habits of Cyclistic's users to help create this marketing campaign. The marketing analyst team would like to know:
+  
+  -   **How annual members and casual riders differ**
+  
+  -   **Why casual riders would buy a membership**
+  
+  -   **How Cyclistic can use digital media to influence casual riders to become members.**
+  
+  Here I have to analyze the Cyclistic historical bike trip data to identify trends in the usage of bikes by casual and member riders.
+
+<br>
+  
+  ## 3. **Phase 1: Ask** {#sec-3.-phase-1-ask}
+  
+  #### 3.1 **Business objective** {#sec-3.0.1-business-objective}
+  
+  The business objective of the case study is to identify opportunities for targeted marketing campaigns to **convert casual riders into annual members**. This will be done through **analysis of bike trip data and understanding user behavior and preferences**. The ultimate goal is to **increase profitability** and drive future growth for the company.
+
+ #### 3.2 **Business task** {#sec-3.2-business-task}
+
+As an analyst my take is to do following:-
+  
+  -   Analyze Cyclistic's historical bike trip data
+-   **Identify trends** and **patterns** in usage of bikes by **casual** and **member riders**
+-   **Understand behavior** and preferences of these two user groups
+-   Identify opportunities for targeted marketing campaigns to **convert casual riders into annual members**
+-   Use **insights from analysis** to inform development of **new marketing strategy** for the company
+-   **Goal:** increase profitability and drive future growth.
+
+#### 3.3 **Stakeholders** {#sec-3.3-stakeholders}
+
+The Stakeholders in this case study include:
+
+-   **Lily Moreno**: **Director of Marketing** at Cyclistic, who is **responsible for implementing the marketing campaigns** at Cyclistic.
+
+-   **Cyclistic's marketing team**: They will be responsible for conducting the analysis and **developing the marketing strategy** based on the insights gained.
+
+-   **Cyclistic's casual riders**: They are the **target audience** of the marketing campaign, and their behavior and preferences will be a **key focus of the analysis**.
+
+-   **Cyclistic's annual members**: They are the group that the marketing campaign is **trying to convert casual riders** into, and their behavior and preferences may be compared to those of casual riders in the analysis.
+
+-   **Cyclistic's investors and shareholders**: They have a **financial interest** in the company's success and may be **interested in the results** of the analysis and any changes to the marketing strategy.
+
+<br>
+  
+  ## 4. **Phase 2: Prepare** {#sec-4.-phase-2-prepare}
+  
+  ### 4.1 **Where is your data located?** {#sec-4.1-where-is-your-data-located}
+  
+  The data for this analysis was obtained from **Motivate International Inc**. and can be **accessed through the provided [[link]{.underline}](https://divvy-tripdata.s3.amazonaws.com/index.html).** It includes **12 months of historical trip data from Cyclistic**, a fictional bike share company based in Chicago. It should be noted that the **data is public** and can be used to explore how different customer types are using Cyclistic bikes.
+
+ ### 4.2 **How is the Data Organized?** {#sec-4.2-how-is-the-data-organized}
+
+For this project, the data used consists of **monthly CSV files** from the **past 12 months (December 2021 - November 2022)**. The **files include 13 columns of information** related to ride details, such as **ride id, ridership type, ride time, start and end locations, and geographic coordinates...etc.** The data is organized in a way that allows for **analysis of trends and patterns** in the usage of Cyclistic's bike share services.
+
+  ### 4.3 **Credibility of data** {#sec-4.0.3-credibility-of-data}
+
+**Motivate, Inc.** collected the [[**data**]{.underline}](https://divvy-tripdata.s3.amazonaws.com/index.html) for this analysis directly through its **management of the Cyclistic Bike Share program for the City of Chicago**. The data is **comprehensive and consistent**, as it includes information on all rides taken by users and **is not just a sample**. It is also **current, as it is released on a monthly basis by the City of Chicago**. The data is made available to the **public by the City of Chicago**.
+
+ ## 4.4 **Licensing, privacy, security, and accessibility** {#sec-4.4-licensing-privacy-security-and-accessibility}
+
+The [[**data**]{.underline}](https://divvy-tripdata.s3.amazonaws.com/index.html) used for this analysis has had all **identifying information removed** in order to **protect the privacy of users**. This limitation on the data does **restrict the scope of the possible analysis**, as it is not possible to determine whether casual riders are repeat users or residents of the Chicago area. The [[**data**]{.underline}](https://divvy-tripdata.s3.amazonaws.com/index.html) is **released under a** [[**specific license**]{.underline}](https://ride.divvybikes.com/data-license-agreement) and is made **available for use in this analysis**.
+
+ ### 4.5 **Ability of Data to answer Business Questions** {#sec-4.5-ability-of-data-to-answer-business-questions}
+
+The **available dataset is sufficient** for the purpose of **answering the business question** regarding the differences in usage patterns between **annual members and casual riders**. Through detailed observation of the variables in the data, it has been determined that **casual riders typically pay for individual or daily rides**, while **member riders tend to purchase annual subscriptions**. This information is **important in understanding the behavioral differences** between the two groups and can be used to inform targeted marketing campaigns. Additional analysis of other variables in the data, such as **ride duration and location**, may provide further insights into the **usage patterns of annual members and casual riders.**
+
+  ## 4.6 *Challenges with the data* {#sec-4.6-challenges-with-the-data}
+
+The **Challenges** I faced during my data analysis are:
+
+-   **Data preparation and downloading each of the data for a particular period ** identified  several issues when using R **, including **duplicate records** and **missing fields...etc**, which were addressed through **data cleaning**
+-   **Large amount of data (870MB)** required working with segments rather than attempting to use diskframe functions
+-   Data cleaning, **removal of unnecessary variables**, and **saving to CSV file** on hard drive allowed for **efficient** processing and analysis of data
+-   **Specialized tools or techniques**, were necessary for working with large amounts of data. Tools like **Excel failed to handle** this amount of data **R** and **Tableau** were used.
+
+<br>
+
+## 5. **Phase 3: Data Process** {#sec-5.-phase-3-data-process}
+
+  ## 5.1 **What tools are you choosing and why?** {#sec-5.1-what-tools-are-you-choosing-and-why}
+
+-   In order to **efficiently prepare, process, clean, analyze, and visualize** the data for this project, I selected **RStudio Desktop** as the **primary tool**. The large size of the dataset made it **impractical** to use tools such as **Microsoft Excel or Google Sheets**, and **RStudio Cloud** was also **unable** **to handle** the volume of data. **RStudio Desktop provided the necessary capabilities to effectively work with the data and generate meaningful insights.**
+
+-   In addition to RStudio Desktop, I also utilized **Tableau** to create **visualizations for this project**. The powerful data visualization capabilities of Tableau allowed me to **effectively communicate** the **results of the analysis and highlight key trends and patterns in the data**.
+
+-   **Overall, the combination of RStudio Desktop and Tableau proved to be a powerful toolkit for preparing, processing, cleaning, analyzing, and visualizing the data for this project.**
+
+  ## 5.2 **Review of Data** {#sec-5.2-review-of-data}
+
+In order to gain an **understanding of the data** and its **potential for analysis**, a review was conducted to **assess the content** of the variables, the **format of the data**, and the **integrity of the data**. This initial review provided an overview of the data and helped to identify any **potential issues or challenges that would need to be addressed** in the preparation and analysis process.
+
+**Data review involved the following:**
+
+-   **Checking column names across all the 12 original files.**
+-   **Checking for missing values.**
+-   **Checking of white spaces.**
+-   **Checking of duplicate records.**
+-   **Other data anomalies.**
+
+**Results of the review found following things:**
+
+-   **Duplicate record of ID numbers.**
+-   **Records with missing start or end station name.**
+-   **Records with very short or very long ride duration.**
+-   **Records for trips starting or ending at an administrative station (repair or testing station).**
+
+All 12 files were combined into one data set after initial review was completed.The final data set consisted of **5733451 rows** with **13 columns** of character and numeric data. **This matched the number of records in all 12 monthly data files**.
+
+ ## 5.3 **Setting up environment** {#sec-5.3-setting-up-environment}
+
+```{r eval=FALSE}
+#----------------------------------------------------------------------------------#
+#load packages
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(data.table)
+library(readr)
+library(ggplot2)
+
+#----------------------------------------------------------------------------------#
+```
+
+  ## 5.0.4 **Data Validation** {#sec-5.4-data-validation}
+
+-   To enable more efficient and comprehensive analysis, it was necessary to **upload the individual data files into new vectors and combine them into a single, large dataset**. This process involved merging the data frames into a cohesive whole, allowing for more effective analysis and interpretation of the data.
+
+```{r eval=FALSE}
+#----------------------------------------------------------------------------------#
+ ## installing and loading the required Packages   
+
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("lubridate")
+install.packages("lubridate")
+library(lubridate)
+install.packages("ggplot2")
+library(ggplot2)
+
+#----------------------------------------------------------------------------------#
+```
+
+ ## getting working directory
+ 
+getwd()
+
+#----------------------------------------------------------------------------------#
+```
+
+ ## setting working directory
+ 
+setwd("C:/Users/USER/Documents/danielojugbele/Divvy Exercise/csv")
+
+setwd("C:/Users/USER/Desktop/Divvy Exercise/csv")
+
+getwd()
+#----------------------------------------------------------------------------------#
+```
+
+ ## importing  data to data-frame in R and viewing it
+ 
+library(readr)
+df1<-read_csv("202004-divvy-tripdata.zip")
+View(df1)
+library(readr)
+df2<-read_csv("202005-divvy-tripdata.zip")
+View(df2)
+library(readr)
+df3<-read_csv("202006-divvy-tripdata.zip")
+View(df3)
+library(readr)
+df4<-read_csv("202007-divvy-tripdata.zip")
+View(df4)
+library(readr)
+df5<-read_csv("202008-divvy-tripdata.zip")
+View(df5)
+library(readr)
+df6<-read_csv("202009-divvy-tripdata.zip")
+View(df6)
+library(readr)
+df7<-read_csv("202010-divvy-tripdata.zip")
+View(df7)
+library(readr)
+df8<-read_csv("202011-divvy-tripdata.zip")
+View(df8)
+library(readr)
+df9<-read_csv("202012-divvy-tripdata.zip")
+View(df9)
+library(readr)
+df10<-read_csv("202101-divvy-tripdata.zip")
+View(df10)
+library(readr)
+df11<-read_csv("202102-divvy-tripdata.zip")
+View(df11)
+library(readr)
+df12<-read_csv("202103-divvy-tripdata.zip")
+View(df12)
+#----------------------------------------------------------------------------------#
+```
+
+ ## Merging data into a single data frame 
+ 
+bikerides<-rbind(df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12)
+dim(bikerides)
+#----------------------------------------------------------------------------------#
+```
+
+ ## installing and loading janitor processing the data
+install.packages("janitor")
+library(janitor)
+#----------------------------------------------------------------------------------#
+```
+ ## cleaning and preparing data
+ 
+bikerides<-janitor::remove_empty(dat = bikerides, which = c("cols"))
+bikerides<-janitor::remove_empty(data= bikerides, which = c(rows))
+bikerides<-janitor::remove_empty(dat= bikerides, which = c(rows))
+bikerides<-janitor::remove_empty(data= bikerides, which = c(rows))
+bikerides<-janitor::remove_empty(data= bikerides, which = c("rows"))
+bikerides<-janitor::remove_empty(dat= bikerides, which = c("rows"))
+dim(bikerides)
+#----------------------------------------------------------------------------------#
+```
+
+ ## converting started at and end at columns to date data types 
+
+bikerides$started_at<-lubridate::as_datetime(bikerides$started_at)
+bikerides$end_at<-lubridate::as_datetime(bikerides$end_at)
+bikerides$ended_at<-lubridate::as_datetime(bikerides$ended_at)
+#----------------------------------------------------------------------------------#
+```
+
+ ## Getting the start time and end time components from data_time
+ 
+bikerides$start_hr<-lubridate::hour_datetime(bikerides$started_at)
+bikerides$start_hr<-lubridate::hour(bikerides$started_at)
+bikerides$end_hr<-lubridate::hour(bikerides$ended_at)
+#----------------------------------------------------------------------------------#
+```
+
+ ## Getting the start and end date
+ 
+bikerides$start_date<-lubridate::date(bikerides$started_at)
+bikerides$end_date<-lubridate::date(bikerides$ended_at)
+#----------------------------------------------------------------------------------#
+```
+
+ ## Getting the ride length and changing diff date to numeric format, the duration is in seconds
+ 
+bikerides$length_hr<-difftime(bikerides$ended_at, bikerides$started_at, units=c("hours"))
+bikerides$length_hr<-as.numeric(bikerides$length_hr)
+#----------------------------------------------------------------------------------#
+```
+
+ ## changing diff date to numeric
+ 
+bikerides$length_hr<-as.numeric(bikerides$length_hr)
+#----------------------------------------------------------------------------------#
+```
+ ## Getting the trip duration in mins
+ 
+bikerides$length_min<-difftime(bikerides$ended_at, bikerides$started_at, units=c("mins"))
+bikerides$length_min<-as.numeric(bikerides$length_min)
+#----------------------------------------------------------------------------------#
+```
+
+ ## I am now removing row which have a trip duration equal to or less than zero
+ 
+bikerides_v2<-na.omit(bikerides[!(bikerides$start_station_name=="HQQR"|bikerides$length<=0),])
+rlang::last_trace()
+rlang::last_trace(drop = FALSE)
+bikerides_v2<-na.omit(bikerides[!(bikerides$start_station_name =="HQ QR" | bikerides$length<=0),])
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$length<=0 ),])
+rlang::last_trace()
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$length<=1 ),])
+rlang::last_trace()
+View(bikerides)
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$length<=10 ),])
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$length <= 0), ])
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$duration <= 0), ])
+str(bikerides)
+bikerides_v2 <- na.omit(bikerides[!(bikerides$start_station_name == "HQ QR" | bikerides$length_min <= 0), ])
+dim(bikerides_v2)
+colSums(is.na(bikerides_v2))
+#----------------------------------------------------------------------------------#
+```
+
+ ## Now i will assign days of the week to start and end date
+ 
+bikerides_v2$start_day <- wday(bikerides_v2$start_date, label = TRUE, abbr = FALSE)
+bikerides_v2$end_day <- wday(bikerides_v2$end_date, label = TRUE, abbr = FALSE)
+       dim(bikerides_v2)
+        View(bikerides_v2)
+#----------------------------------------------------------------------------------#
+```
+
+ ## i export the end of the result as csv to nwork on Tableau
+ 
+write.csv(bikerides_v2, "gproject.csv", row.names = FALSE)
+write.csv(bikerides_v2, "google project 1.csv", row.names = FALSE)
+#----------------------------------------------------------------------------------#
+```
+
+ ## i get the average trim duration as well as the maximum trip duration 
+ 
+cat('average duration of rides is : ', mean(bikerides_v2$length_min), "mins")
+cat('  maximum duration of rides is : ', round(max(bikerides_v2$length_min)/60/24), "days")
+#----------------------------------------------------------------------------------#
+```
+
+ ## i view the final data set as bikerides
+ 
+View(bikerides)
+View(bikerides_v2)
+#----------------------------------------------------------------------------------#
+```
+
+<br>
+  
+  ## 8. **Phase 6: Data Visualizations and Summary** {#sec-8.-phase-6-data-visualizations-and-summary}
+  
+  ## 8.1 **Visualization 1** {#sec-8.1-visualization-1--}
+  
+  -   This visualization shows the **The highest number of end day for both length min/hr of the bike rider is on saturday while the lowest end day for both length min/hr is on wednesday**.
+
+![](Visualizations/Start Hour_Vs_Start Day.png)
+
+ ## 8.2 **Visualization 2** {#sec-8.2-visualization-2--}
+
+-   This plot demonstrates that ** The weekly usage trends of bike sharing of both annual members and casual riders**. It apear that there is  **a high demand for bike usage during the end day for both length min/hour for both customer types**, with both riders  on saturday showing a slightly higher demand. on the other hand the demand for bike usage among casual and member decreases significally on wednesday.
+![](Visualizations/Length hour with Length minute_Vs_End Day.png)
+
+ ## 8.3 **Visualization 3** {#sec-8.3-visualization-3--}
+
+-   This plot shows that the Both Casual and member tend to use the bikes more frequently during weekend which is on saturday for the end day**, potentially for **commuting to and from work**. On the other hand, **casual and member riders show a more steady increase in usage throughout the weekend day**. This suggests that casual and member riders can be using the bikes more for weekend days,**for leisure activities**. These insights provide valuable information on the **different usage patterns of annual members and casual riders**, which can inform different techniques for promoting the bike share program and targeting the weekend days.
+
+  ![](Visualizations/TotalRides_Vs_Month.png)
+
+ ## 8.4 **Visualization 4** {#sec-8.4-visualization-4--}
+
+-   In this plot between the **Avg. Length hour and start At **, It is crystal clear that **casual riders tend to use the bike share service primarily on weekends with with about 26k in number  ** for leisure or recreational purposes, while **annual members use the service more less consistently throughout the week with a number of about 8k**, possibly for commuting to work or other daily activities. This information could be useful for Cyclistic in terms of understanding how to target marketing efforts and **potentially adjusting pricing or membership plans to better meet the needs of these different customer groups**.
+
+![](Visualizations/Average Length hour_Vs_Start At.png)
+
+  ## 8.5 **Visualization 5** {#sec-8.5-visualization-5--}
+
+-   To summarize, the analysis of the plot showed that annual members and casual riders use the bike-sharing service differently. **Annual members tend to use the bikes for their regular commutes, with a steadier usage throughout the week and year with about 200k length min. **. **Casual riders, on the other hand, tend to use the bikes more for leisure, with higher usage on weekends and in the summer months with about 750k length min. **. Additionally, **the average ride length for casual riders was found to be longer than that of annual members.** These findings can inform business decisions and support decision making for the bike-sharing company.
+
+![](Visualizations/Avg Length Min_Vs_Month.png)
+
+ ## 8.6 **Visualization 6** {#sec-8.6-visualization-6--}
+
+-   The analysis of bike type usage showed that **members prefer discount count of the end lat.** ,** while **casual riders have similar usage of of the discount count of the end lat. but lower than that member.** 
+  
+  ![](Visualizations/ Discount count of End Lat_Vs_End Day.png)
+
+
+<br>
+  
+  ## 9. **Phase 7: Act** {#sec-9.-phase-7-act}
+  
+   ## 9.1 **Key Takeaways :** {#sec-9.1-key-takeaways}
+  
+- Annual members predominantly utilize the bike-sharing service for daily commutes, in contrast to casual riders who prefer leisurely rides, especially on weekends and during the summer months.
+  
+- Annual members demonstrate a more steady and consistent utilization of the service throughout both the week and the entire year when compared to the more variable patterns observed among casual riders.
+
+- Classic bikes are the preferred choice for both annual members and casual riders. However, annual members predominantly opt for classic bikes and seldom use docked bikes, while casual riders exhibit a greater likelihood of using all available bike types.
+
+- Casual riders generally enjoy longer ride durations, averaging approximately 50% more than those of annual members.
+
+- There is a noticeable decrease in the usage of the bike-sharing service by casual riders during weekends and months compared to the more consistent usage patterns observed among annual members during similar periods.
+
+ ## 9.2 **Recommendations :** {#sec-9.2-recommendations-}
+Certainly, let's condense the key points into six concise recommendations:
+
+1. **Optimize Peak Days:**
+   - Allocate resources strategically to meet high demand on Saturdays and consider targeted promotions to boost usage on Wednesdays.
+
+2. **Targeted Marketing for Weekends:**
+   - Tailor marketing efforts to capitalize on the higher demand for bike usage during weekends, particularly on Saturdays.
+
+3. **Differential Strategies for Customer Types:**
+   - Recognize distinct usage patterns of annual members and casual riders.
+   - Design separate marketing strategies, emphasizing commuting convenience for members and leisure options for casual riders.
+
+4. **Pricing and Promotion Adjustments:**
+   - Adjust pricing or membership plans to align with the identified preferences of casual riders who primarily use the service on weekends.
+
+5. **Tailored Marketing Campaigns:**
+   - Develop targeted marketing campaigns that align with the unique characteristics of annual members and casual riders.
+
+6. **Bike Type Optimization:**
+   - Optimize bike distribution based on user preferences, ensuring the availability of the preferred bike type for both members and casual riders.
+
+
+#### \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--End of Case Study------------------------------------------------
