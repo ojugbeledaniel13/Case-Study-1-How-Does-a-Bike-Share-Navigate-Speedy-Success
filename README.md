@@ -60,4 +60,4 @@ This data analysis project provides valuable insights into customer behavior and
 
 For detailed code, data, and visualizations, please refer to the project files in this repository.
 
-For any questions or inquiries, please contact [Your Name] at [Your Email].
+For any questions or inquiries, please contact Daniel Ojugbele at ojugbeledaniel13@gmail.com
